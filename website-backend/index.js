@@ -5,7 +5,7 @@ const app = express();
 const path = require('path');
 
 // Point static path to dist
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'website')));
 
 // Server 
 app.listen(80, function () {
