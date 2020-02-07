@@ -97,8 +97,9 @@ p{
 
 .header{
 	text-align:center;
-	background:url(../img/test.PNG) left top repeat;
-	padding:280px 0;
+	background: radial-gradient(black, #00000000);
+	/*background:url(../img/test.PNG) left top repeat;*/
+	padding:400px 0;
 	height: 100vh;
 }
 .logo{
@@ -774,6 +775,7 @@ border: 2px solid #fff;
 
 .footer{
 	/*background:url(../img/test.PNG) left top repeat;*/
+	background: rgb(50,50,50);
 	padding:35px 0 35px;
 }
 .footer-logo{
