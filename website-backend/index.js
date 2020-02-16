@@ -6,6 +6,9 @@ const path = require('path');
 
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'website')));
+app.get('*', function (req, res) {
+    res.send(path.join(__dirname, 'website'));
+  });
 
 // Server 
 app.listen(80, function () {
