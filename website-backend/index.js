@@ -8,7 +8,7 @@ const path = require('path');
 app.use(express.static(path.join(__dirname, 'website')));
 
 app.get('*', function (req, res) {
-    res.sendFile(express.static(path.join(__dirname, 'website')));
+  res.sendFile('website/index.html', { root: __dirname });
   });
 
 // Server 
