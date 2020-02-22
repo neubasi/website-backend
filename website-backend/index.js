@@ -4,12 +4,9 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-// Point static path to dist
-app.use((err, req, res, next) => {
-  express.static(path.join(__dirname, 'website'));
-  next(err);
-});
 
+// Point static path to dist
+app.use(express.static(path.join(__dirname, 'website')));
 
 app.get('*', function (req, res) {
   res.sendFile('website/index.html', { root: __dirname });
