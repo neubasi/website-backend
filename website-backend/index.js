@@ -3,10 +3,15 @@ console.log('Node App startet...')
 const express = require('express');
 const app = express();
 const path = require('path');
+const bodyParser = require('body-parser');
 
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+   extended: false
+}));
 app.use(express.static(path.join(__dirname, 'website')));
-//app.use('/', express.static(path.join(__dirname, 'website')));
+app.use('/', express.static(path.join(__dirname, 'website')));
+
 
 // Point static path to dist
 //app.use(express.static(path.join(__dirname, 'website')));
