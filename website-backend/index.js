@@ -5,6 +5,7 @@ const app = express();
 const path = require('path');
 const fs = require('fs');
 const https = require('https');
+const http = require('http');
 
 
 // Certificate
@@ -35,8 +36,12 @@ const credentials = {
 	ca: ca
 };
 
-
+const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
+
+httpServer.listen(80, () => {
+	console.log('HTTP Server running on port 80, Simon Neubauer');
+});
 
 httpsServer.listen(443, () => {
 	console.log('HTTPS Server running on port 443, Simon Neubauer');
