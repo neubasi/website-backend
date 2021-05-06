@@ -13,6 +13,10 @@ const privateKey = fs.readFileSync('/etc/letsencrypt/live/hy1dra.com/privkey.pem
 const certificate = fs.readFileSync('/etc/letsencrypt/live/hy1dra.com/cert.pem', 'utf8');
 const ca = fs.readFileSync('/etc/letsencrypt/live/hy1dra.com/chain.pem', 'utf8');
 
+app.enable('trust proxy')
+app.use((req, res, next) => {
+    req.secure ? next() : res.redirect('https://' + req.headers.host + req.url)
+});
 
 app.use(express.static(path.join(__dirname, 'website')));
 app.use(express.static(path.join(__dirname, 'stationscockpit')));
@@ -30,15 +34,12 @@ const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
 
 
-app.enable('trust proxy')
-app.use((req, res, next) => {
-    req.secure ? next() : res.redirect('https://' + req.headers.host + req.url)
-})
 
-  
+
+  /*
   app.get('*', function (req, res) {
 	res.sendFile('/website/index.html', { root: __dirname });
-  });
+  });*/
 
 
 httpServer.listen(80, () => {
