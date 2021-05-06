@@ -17,10 +17,6 @@ const ca = fs.readFileSync('/etc/letsencrypt/live/hy1dra.com/chain.pem', 'utf8')
 app.use(express.static(path.join(__dirname, 'website')));
 app.use(express.static(path.join(__dirname, 'stationscockpit')));
 
-// set up a route to redirect http to https
-app.get('*', function(req, res) {  
-    res.redirect('https://' + req.headers.host + req.url);
-})
 
 app.get('/stationscockpit', function (req, res) {
   res.sendFile('/stationscockpit/index.html', { root: __dirname });
@@ -42,6 +38,12 @@ const httpsServer = https.createServer(credentials, app);
 httpServer.listen(80, () => {
 	console.log('HTTP Server running on port 80, Simon Neubauer');
 });
+
+// set up a route to redirect http to https
+httpServer.get('*', function(req, res) {  
+    res.redirect('https://' + req.headers.host + req.url);
+})
+
 
 httpsServer.listen(443, () => {
 	console.log('HTTPS Server running on port 443, Simon Neubauer');
