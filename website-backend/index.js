@@ -34,13 +34,14 @@ app.get('*', function(req, res) {
     res.redirect('https://' + req.headers.host + req.url);
 });
 
+/*
 app.get('/stationscockpit', function (req, res) {
 	res.sendFile('/stationscockpit/index.html', { root: __dirname });
   });
   
   app.get('*', function (req, res) {
 	res.sendFile('/website/index.html', { root: __dirname });
-  });
+  });*/
 
 
 httpServer.listen(80, () => {
