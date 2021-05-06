@@ -29,19 +29,16 @@ const credentials = {
 const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
 
-// set up a route to redirect http to https
-app.get('*', function(req, res) {  
-    res.redirect('https://' + req.headers.host + req.url);
-});
 
-/*
-app.get('/stationscockpit', function (req, res) {
-	res.sendFile('/stationscockpit/index.html', { root: __dirname });
-  });
+app.enable('trust proxy')
+app.use((req, res, next) => {
+    req.secure ? next() : res.redirect('https://' + req.headers.host + req.url)
+})
+
   
   app.get('*', function (req, res) {
 	res.sendFile('/website/index.html', { root: __dirname });
-  });*/
+  });
 
 
 httpServer.listen(80, () => {
